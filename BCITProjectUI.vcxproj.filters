@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Aim">
+      <UniqueIdentifier>{36de9959-0335-448d-b83e-d670b0793b9a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GlowESP">
+      <UniqueIdentifier>{7a604118-da82-48d5-b715-bd105b1a250b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Trigger">
+      <UniqueIdentifier>{7ce0ab58-e3dc-4e29-a2f3-ee0d908759a3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="BHop">
+      <UniqueIdentifier>{10198143-5601-4a76-9bd2-73643ffcd1a3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MemoryManager">
+      <UniqueIdentifier>{e6e0dfa4-bb64-41f6-9dde-351a1794aaef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Offset">
+      <UniqueIdentifier>{446be237-7e87-4fe2-a913-8aa960582b0a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThreadManager">
+      <UniqueIdentifier>{27082f5a-1f5e-450b-b30a-722cea723b8d}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BCITProjectUI.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="aim.h">
+      <Filter>Aim</Filter>
+    </ClInclude>
+    <ClInclude Include="GlowESP.h">
+      <Filter>GlowESP</Filter>
+    </ClInclude>
+    <ClInclude Include="bhop.h">
+      <Filter>BHop</Filter>
+    </ClInclude>
+    <ClInclude Include="MemoryManager.h">
+      <Filter>MemoryManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Offset.h">
+      <Filter>Offset</Filter>
+    </ClInclude>
+    <ClInclude Include="Trigger.h">
+      <Filter>Trigger</Filter>
+    </ClInclude>
+    <ClInclude Include="includes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BCITProjectUI.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="aim.cpp">
+      <Filter>Aim</Filter>
+    </ClCompile>
+    <ClCompile Include="GlowESP.cpp">
+      <Filter>GlowESP</Filter>
+    </ClCompile>
+    <ClCompile Include="bhop.cpp">
+      <Filter>BHop</Filter>
+    </ClCompile>
+    <ClCompile Include="MemoryManager.cpp">
+      <Filter>MemoryManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Offset.cpp">
+      <Filter>Offset</Filter>
+    </ClCompile>
+    <ClCompile Include="Trigger.cpp">
+      <Filter>Trigger</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="BCITProjectUI.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="small.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="BCITProjectUI.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+</Project>
