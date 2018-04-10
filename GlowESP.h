@@ -8,7 +8,7 @@ class Glow
 public:
 	Glow();
 	~Glow();
-	void GlowESP();
+	void GlowESP(float Distance);
 
 	float TRed = 1.f;
 	float TGreen = 0.f;

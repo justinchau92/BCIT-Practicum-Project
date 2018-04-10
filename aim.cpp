@@ -3,9 +3,8 @@
 
 aim *pAim = new aim();
 
-
 DWORD ClientState;
-Vector myAngles;
+Vector currentViewAngle;
 int MaxPlayers = 32;
 
 struct MyPlayer_t
@@ -28,7 +27,6 @@ struct MyPlayer_t
 		ReadProcessMemory(Mem->GetProchandle(), (PBYTE*)(localPlayer + m_vecViewOffset), &View, sizeof(float[3]), 0);
 
 	}
-
 
 }LocalPlayer;
 
@@ -59,9 +57,7 @@ struct targetList_t
 			pow(double(entityCoords->x - localCoords->x), 2.0) +
 			pow(double(entityCoords->y - localCoords->y), 2.0) +
 			pow(double(entityCoords->z - localCoords->z), 2.0));
-
 	}
-
 
 };
 
@@ -85,43 +81,12 @@ struct EntityPlayer_t
 }EntityPlayer[32];
 
 
-
 aim::aim() {
 
 }
 
 aim::~aim()
 {
-
-}
-
-
-void aim::ReadMem()
-{
-	/*
-	localPlayer = Mem->Read<DWORD>(Mem->ClientDLL_Base + playerBase);
-	localPos = Mem->Read<float>(localPlayer + m_vecOrigin);
-	localView = Mem->Read<float>(localPlayer + m_vecViewOffset);
-
-	Entity = Mem->Read<DWORD>(Mem->ClientDLL_Size + entityBase + 0x50);
-	enemyPos = Mem->Read<Vector>(Entity + m_vecOrigin);
-	enemyView = Mem->Read<float>(Entity + m_vecViewOffset);
-
-	ClientState = Mem->Read<DWORD>(Mem->EngineDLL_Base + clientState);
-	angles = Mem->Read<Vector>(ClientState + dwClientState_ViewAngles);*/
-
-	//Stored in structures instead to get list of targets
-	/**
-	ReadProcessMemory(Mem->GetProchandle(), (PBYTE*)(Mem->ClientDLL_Base + playerBase), &localPlayer, sizeof(DWORD), 0);
-	ReadProcessMemory(Mem->GetProchandle(), (PBYTE*)(localPlayer + m_vecOrigin), &localPos, sizeof(localPos), 0);
-	ReadProcessMemory(Mem->GetProchandle(), (PBYTE*)(localPlayer + m_vecViewOffset), &localView, sizeof(localPos), 0);
-
-	ReadProcessMemory(Mem->GetProchandle(), (PBYTE*)(Mem->ClientDLL_Base + entityBase + 0x10), &Entity, sizeof(Entity), 0);
-	ReadProcessMemory(Mem->GetProchandle(), (PBYTE*)(Entity + m_vecOrigin), &enemyPos, sizeof(enemyPos), 0);
-	ReadProcessMemory(Mem->GetProchandle(), (PBYTE*)(Entity + m_vecViewOffset), &enemyView, sizeof(enemyView), 0);*/
-
-	ReadProcessMemory(Mem->GetProchandle(), (PBYTE*)(Mem->EngineDLL_Base + clientState), &ClientState, sizeof(ClientState), 0);
-
 
 }
 
@@ -149,7 +114,6 @@ Vector aim::calcAngle(Vector* src, Vector* dst)
 	newAngle.z = 0;
 
 
-
 	return newAngle;
 }
 
@@ -172,13 +136,12 @@ float aimDistance(Vector * Local, Vector * Enemy)
 void aim::aimAssist(float FOV)
 {
 	float FOVs = FOV;
+
 	targetList_t* TargetList = new targetList_t[MaxPlayers];
-	ReadMem();
+
 	LocalPlayer.ReadPosition();
-	Vector currentViewAngle;
-	float Distance;
 
-
+	ClientState = Mem->Read<DWORD>(Mem->EngineDLL_Base + clientState);
 
 	int targetLoop = 0;
 
@@ -196,13 +159,7 @@ void aim::aimAssist(float FOV)
 		currentViewAngle.x = Mem->Read<float>(ClientState + dwClientState_ViewAngles);
 		currentViewAngle.y = Mem->Read<float>(ClientState + dwClientState_ViewAngles + 0x4);
 
-		Distance = aimDistance(&currentViewAngle, &EntityPlayer[i].aimAngle);
-
-
-
-		//cout << currentViewAngle.y << endl;
-
-		TargetList[targetLoop] = targetList_t(&EntityPlayer[i].aimAngle, &LocalPlayer.Position, &EntityPlayer[i].Position, Distance);
+		TargetList[targetLoop] = targetList_t(&EntityPlayer[i].aimAngle, &LocalPlayer.Position, &EntityPlayer[i].Position, aimDistance(&currentViewAngle, &EntityPlayer[i].aimAngle));
 		targetLoop++;
 
 	}
@@ -211,7 +168,7 @@ void aim::aimAssist(float FOV)
 	if (targetLoop > 0)
 	{
 		std::sort(TargetList, TargetList + targetLoop, SortEnemies);
-		cout << TargetList[0].aimDistance << endl;
+		//cout << TargetList[0].aimDistance << endl;
 
 		if (GetAsyncKeyState(0x2))
 		{
@@ -222,16 +179,12 @@ void aim::aimAssist(float FOV)
 				WriteProcessMemory(Mem->GetProchandle(), (PBYTE*)(ClientState + dwClientState_ViewAngles + 0x4), &TargetList[0].aimAngle.y, sizeof(float), 0);
 			}
 
-
-
-
 		}
 	}
 
 	targetLoop = 0;
 
 	delete[] TargetList;
-
 
 }
 
