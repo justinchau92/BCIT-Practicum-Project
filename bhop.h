@@ -7,10 +7,6 @@ public:
 	bHop();
 	~bHop();
 	void autobHop();
-	int _onGround();
-	int inAir();
-	DWORD getBhopKey();
-
 
 private:
 	int onGround = 257;

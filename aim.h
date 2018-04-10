@@ -13,11 +13,9 @@ class aim
 public:
 	aim();
 	~aim();
-	void ReadMem();
 	void aimAssist(float FOV);
 	Vector calcAngle(Vector* src, Vector* dst);
 
 };
-
 
 extern aim *pAim;
