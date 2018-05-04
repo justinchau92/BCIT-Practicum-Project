@@ -29,3 +29,6 @@ memory. These solutions are:
 * Physical
   * Aim Assist
   * Trigger (Auto shooting
+
+
+**REFER TO PDF FOR MORE DETAILS/TESTING**
